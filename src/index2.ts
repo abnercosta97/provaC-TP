@@ -1,5 +1,28 @@
 import express from "express";
 import dotenv from "dotenv";
+
+dotenv.config();
+
+const PORT = process.env.PORT || 3079;
+console.log(PORT);
+
+const app = express(); // cria o servidor e coloca na variável 
+
+app.listen(PORT, () => {
+    console.log(`Rodando na porta ${PORT}`);
+});
+
+app.get("/um/:title/:year", (req, res) => {
+    const title = req.params.title;
+    const year = req.params.year;
+    res.json({ title, year });
+})
+
+
+
+/*
+import express from "express";
+import dotenv from "dotenv";
 import cors from "cors";
 import routes from './routes';
 // carrega as variáveis de ambiente
@@ -19,4 +42,4 @@ app.listen(PORT, () => {
 });
 
 // define a rota para o pacote /routes
-app.use(routes);
+app.use(routes);*/

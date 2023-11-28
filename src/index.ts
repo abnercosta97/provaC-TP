@@ -1,22 +1,22 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import routes from './routes';
-// carrega as variáveis de ambiente
-dotenv.config();
-// será usado 3000 se a variável de ambiente não tiver sido definida
-const PORT = process.env.PORT || 3079;
-console.log(PORT);
-// cria o servidor e coloca na variável app
-const app = express(); // cria o servidor e coloca na variável app
-// suportar parâmetros JSON no body da requisição
-app.use(express.json());
-//aceitar requisições de outros domínios
-app.use(cors()); 
-// inicializa o servidor na porta especificada
-app.listen(PORT, () => {
-    console.log(`Rodando na porta ${PORT}`);
+// index.ts
+import express, { Request, Response } from 'express';
+import  Movie  from '../src/classes/Movie';
+import Set  from '../src/classes/Set';
+
+
+const app = express();
+const port = 3000;
+
+
+app.get('/um/:title/:year', (req: Request, res: Response) => {
+  const {title, year} = req.params;
+  const filme = new Movie(title, parseInt(year));
+    //res.json(filme.toJson());
+  const filmes = new Set(filme);
+res.json(filmes.getItems());
+
 });
 
-// define a rota para o pacote /routes
-app.use(routes);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
