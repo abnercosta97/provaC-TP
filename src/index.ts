@@ -3,7 +3,6 @@ import express, { Request, Response } from 'express';
 import  Movie  from '../src/classes/Movie';
 import Set  from '../src/classes/Set';
 import { Comparable } from './classes/Types';
-import e from 'express';
 import Car from './classes/Car';
 import SetGeneric from './classes/SetGeneric';
 
@@ -33,11 +32,11 @@ app.post('/dois', async (req: Request, res: Response) => {
       return res.status(400).json({message: 'Invalid type'});
   }
   const setGeneric = new SetGeneric(items);
-  await setGeneric.append(setGeneric.getItems());
+
 
     res.json(setGeneric.getItems());
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({error });
   }
 
 
