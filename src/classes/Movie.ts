@@ -1,6 +1,6 @@
-import { MovieProps } from "./Types";
+import { Comparable, MovieProps } from "./Types";
 
-export default class Movie {
+export default class Movie implements Comparable {
   constructor(private title: string, private year: number) {}
 
   toJson(): MovieProps {
@@ -9,7 +9,7 @@ export default class Movie {
       year: this.year,
     };
   }
-  
+
   compareTo(movie: Movie): number {
     return this.title.localeCompare(movie.title);
   }
